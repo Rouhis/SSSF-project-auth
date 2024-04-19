@@ -36,7 +36,7 @@ const userGet = async (
       .findById(req.params.id)
       .select('-password -__v -role');
     if (!user) {
-      throw new CustomError('No species found', 404);
+      throw new CustomError('No users found', 404);
     }
     res.json(user);
   } catch (error) {
