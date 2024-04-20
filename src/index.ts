@@ -4,7 +4,9 @@ import mongoConnect from './lib/db';
 const port = process.env.PORT || 8080;
 (async () => {
   try {
+    console.log('Attempting to connect to MongoDB...');
     await mongoConnect();
+    console.log('Successfully connected to MongoDB.');
     app.listen(port, () => {
       /* eslint-disable no-console */
       console.log(`Listening: http://localhost:${port}`);
