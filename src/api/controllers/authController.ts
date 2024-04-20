@@ -17,7 +17,7 @@ const login = async (
   next: NextFunction
 ) => {
   try {
-    //ASDDDD
+    //A
     const {username, password} = req.body;
     const user = await userModel.findOne({email: username});
     if (!user) {
