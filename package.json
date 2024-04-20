@@ -1,14 +1,13 @@
 {
   "name": "sssf-auth-server",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.2.0",
+  "description": " A basic starter for an express.js API with Typescript",
   "main": "src/index.ts",
   "scripts": {
     "start": "node dist/src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "lint": "eslint --fix src test",
-    "test": "jest --detectOpenHandles --forceExit"
+    "lint": "eslint --fix src test"
   },
   "repository": {
     "type": "git",
