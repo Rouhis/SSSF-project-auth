@@ -26,6 +26,7 @@ type User = Partial<Document> & {
   email: string;
   password: string;
   role: 'user' | 'admin';
+  organization: string;
 };
 
 type UserWithoutPassword = Omit<User, 'password'>;
