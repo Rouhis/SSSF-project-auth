@@ -36,7 +36,6 @@ const login = async (
       _id: user._id,
       email: user.email,
       user_name: user.user_name,
-      organization: user.organization,
     };
 
     const tokenContent: UserWithoutPassword = {
@@ -44,7 +43,6 @@ const login = async (
       email: user.email,
       user_name: user.user_name,
       role: user.role,
-      organization: user.organization,
     };
 
     const token = jwt.sign(tokenContent, process.env.JWT_SECRET);

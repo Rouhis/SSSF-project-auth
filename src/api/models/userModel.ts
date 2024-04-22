@@ -21,10 +21,6 @@ const userSchema = new mongoose.Schema<User>({
     required: true,
     enum: ['user', 'admin'],
   },
-  organization: {
-    type: String,
-    required: true,
-  },
 });
 
 export default mongoose.model<User>('User', userSchema);
