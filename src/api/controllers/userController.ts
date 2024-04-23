@@ -50,9 +50,12 @@ const userPost = async (
   next: NextFunction
 ) => {
   try {
-    req.body.role = 'user';
     req.body.password = bcrypt.hashSync(req.body.password, 10);
     const user = await userModel.create(req.body);
+    if (req.body.role !== 'manager') {
+      user.role = 'user';
+      await user.save();
+    }
     const response = {
       message: 'User added',
       data: user,

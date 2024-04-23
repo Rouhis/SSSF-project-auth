@@ -25,7 +25,7 @@ type User = Partial<Document> & {
   user_name: string;
   email: string;
   password: string;
-  role: 'user' | 'admin';
+  role: 'user' | 'admin' | 'manager';
   organization: string;
 };
 
