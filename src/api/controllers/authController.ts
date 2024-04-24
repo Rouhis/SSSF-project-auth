@@ -18,6 +18,7 @@ const login = async (
 ) => {
   try {
     //ASDD
+    console.log('login', req.body);
     const {username, password} = req.body;
     const user = await userModel.findOne({email: username});
     if (!user) {
@@ -48,7 +49,7 @@ const login = async (
     };
 
     const token = jwt.sign(tokenContent, process.env.JWT_SECRET);
-
+    console.log('user', userWithoutPassword);
     res.json({message: 'Login successful', token, user: userWithoutPassword});
   } catch (error) {
     next(error);
