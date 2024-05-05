@@ -31,13 +31,4 @@ type User = Partial<Document> & {
 
 type UserWithoutPassword = Omit<User, 'password'>;
 
-type UserWithoutPasswordRole = Omit<UserWithoutPassword, 'role'>;
-
-export {
-  Category,
-  Species,
-  Animal,
-  User,
-  UserWithoutPassword,
-  UserWithoutPasswordRole,
-};
+export {Category, Species, Animal, User, UserWithoutPassword};
