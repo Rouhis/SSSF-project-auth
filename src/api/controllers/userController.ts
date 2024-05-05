@@ -72,18 +72,30 @@ const userPut = async (
   next: NextFunction
 ) => {
   try {
+    let updateData = req.body;
+
+    // If a new password is provided, hash it before updating the user
+    if (updateData.password) {
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(updateData.password, saltRounds);
+      updateData = {...updateData, password: hashedPassword};
+    }
+
     const user = await userModel
-      .findByIdAndUpdate(req.params.id, req.body, {
+      .findByIdAndUpdate(req.params.id, updateData, {
         new: true,
       })
       .select('-password -__v -role');
+
     if (!user) {
       throw new CustomError('No user found', 404);
     }
+
     const response = {
       message: 'User updated',
       data: user,
     };
+
     res.json(response);
   } catch (error) {
     next(error);

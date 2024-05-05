@@ -1,8 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
-import {
-  UserWithoutPassword,
-  UserWithoutPasswordRole,
-} from '../../types/DBTypes';
+import {UserWithoutPassword} from '../../types/DBTypes';
 import {MessageResponse} from '../../types/MessageTypes';
 import userModel from '../models/userModel';
 import CustomError from '../../classes/CustomError';
@@ -11,9 +8,7 @@ import jwt from 'jsonwebtoken';
 
 const login = async (
   req: Request<{}, {}, {username: string; password: string}>,
-  res: Response<
-    MessageResponse & {token: string; user: UserWithoutPasswordRole}
-  >,
+  res: Response<MessageResponse & {token: string; user: UserWithoutPassword}>,
   next: NextFunction
 ) => {
   try {
@@ -33,11 +28,12 @@ const login = async (
       throw new CustomError('JWT secret not set', 500);
     }
 
-    const userWithoutPassword: UserWithoutPasswordRole = {
+    const userWithoutPassword: UserWithoutPassword = {
       _id: user._id,
       email: user.email,
       user_name: user.user_name,
       organization: user.organization,
+      role: user.role,
     };
 
     const tokenContent: UserWithoutPassword = {
