@@ -5,7 +5,6 @@ const userSchema = new mongoose.Schema<User>({
   user_name: {
     type: String,
     minlength: [3, 'Username must be at least 3 characters'],
-    unique: true,
   },
   email: {
     type: String,
@@ -27,4 +26,9 @@ const userSchema = new mongoose.Schema<User>({
   },
 });
 
-export default mongoose.model<User>('User', userSchema);
+const userModel = mongoose.model<User>('User', userSchema);
+
+// Ensure that the unique index is created
+userModel.ensureIndexes();
+
+export default userModel;
